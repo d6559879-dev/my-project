@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="connect-src https://aowfjpaclhrmmhpuxauq.supabase.co wss://aowfjpaclhrmmhpuxauq.supabase.co; img-src data: https://aowfjpaclhrmmhpuxauq.supabase.co; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+    <meta name="referrer" content="no-referrer">
+    <title>Boutique</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">🛍️ <span id="v-logo">Boutique</span></div>
+        <a href="index.html" class="lien-retour">← Boutiques</a>
+    </header>
+
+    <main class="accueil">
+
+        <section class="hero">
+            <span class="badge">🏪 Bienvenue</span>
+            <h1 id="v-nom">Chargement…</h1>
+            <p id="v-description"></p>
+            <a id="v-tel" class="bouton-principal" hidden>📞 Appeler la boutique</a>
+        </section>
+
+        <section class="fonctionnalites">
+            <h2>Nos produits</h2>
+            <div id="v-produits" class="grille-produits"></div>
+        </section>
+
+        <p class="pied-vitrine">Propulsé par ShopBuilder</p>
+
+    </main>
+
+    <div id="commande" class="fenetre">
+        <div class="creation-box">
+            <button class="fermer" onclick="fermerCommande()">✕</button>
+            <h2>🛒 Commander</h2>
+            <p class="sous-titre" id="c-produit"></p>
+
+            <label>Quantité</label>
+            <input id="c-quantite" type="number" min="1" value="1">
+
+            <label>Votre nom</label>
+            <input id="c-client" type="text" placeholder="Ex : Marie" maxlength="80">
+
+            <label>Votre téléphone</label>
+            <input id="c-telephone" type="tel" placeholder="Ex : 08XXXXXXXX" maxlength="30">
+
+            <button class="creer" id="c-bouton" onclick="envoyerCommande()">Envoyer la commande</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+    <script src="vitrine.js"></script>
+</body>
+</html>

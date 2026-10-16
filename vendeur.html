@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta http-equiv="Content-Security-Policy" content="connect-src https://aowfjpaclhrmmhpuxauq.supabase.co wss://aowfjpaclhrmmhpuxauq.supabase.co; img-src data: blob: https://aowfjpaclhrmmhpuxauq.supabase.co; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+    <meta name="referrer" content="no-referrer">
+
+    <title>ShopBuilder — Espace vendeur</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div class="logo">
+            🛍️ ShopBuilder
+        </div>
+
+        <button class="menu" onclick="ouvrirMenu()">
+            ☰
+        </button>
+
+    </header>
+
+
+    <main class="accueil">
+
+        <section class="hero">
+
+            <span class="badge">
+                🚀 Votre commerce en ligne
+            </span>
+
+            <h1>
+                Créez votre boutique
+                <span>en ligne.</span>
+            </h1>
+
+            <p>
+                Lancez votre boutique, ajoutez vos produits
+                et gérez vos commandes depuis une seule
+                application.
+            </p>
+
+            <button class="bouton-principal"
+                    onclick="ouvrirCreation()">
+                + Créer ma boutique
+            </button>
+
+        </section>
+
+
+        <section class="stats">
+
+            <div class="stat">
+                <strong id="nombre-boutiques">0</strong>
+                <span>Boutiques</span>
+            </div>
+
+            <div class="stat">
+                <strong id="nombre-produits">0</strong>
+                <span>Produits</span>
+            </div>
+
+            <div class="stat">
+                <strong id="nombre-ventes">0 FC</strong>
+                <span>Ventes</span>
+            </div>
+
+        </section>
+
+
+        <section class="fonctionnalites">
+
+            <h2>Tout pour votre boutique</h2>
+
+            <div class="cartes">
+
+                <div class="carte"
+                     onclick="ouvrirMaBoutique()">
+
+                    <div class="icone">🏪</div>
+
+                    <h3>Ma boutique</h3>
+
+                    <p>
+                        Consultez et personnalisez
+                        votre boutique.
+                    </p>
+
+                </div>
+
+
+                <div class="carte"
+                     onclick="ouvrirProduits()">
+
+                    <div class="icone">📦</div>
+
+                    <h3>Produits</h3>
+
+                    <p>
+                        Ajoutez et gérez facilement
+                        vos produits.
+                    </p>
+
+                </div>
+
+
+                <div class="carte" onclick="ouvrirCommandes()">
+
+                    <div class="icone">🛒</div>
+
+                    <h3>Commandes</h3>
+
+                    <p>
+                        Suivez vos commandes et
+                        vos ventes.
+                    </p>
+
+                </div>
+
+
+                <div class="carte" onclick="ouvrirStatistiques()">
+
+                    <div class="icone">📊</div>
+
+                    <h3>Statistiques</h3>
+
+                    <p>
+                        Analysez les performances
+                        de votre boutique.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- CRÉATION DE BOUTIQUE -->
+
+    <div id="creation" class="fenetre">
+
+        <div class="creation-box">
+
+            <button class="fermer"
+                    onclick="fermerCreation()">
+                ✕
+            </button>
+
+            <h2>🏪 Créer ma boutique</h2>
+
+            <p class="sous-titre">
+                Commençons par les informations
+                de votre boutique.
+            </p>
+
+
+            <label>Nom de la boutique</label>
+
+            <input
+                id="nom-boutique"
+                type="text"
+                placeholder="Ex : Ma Boutique"
+            >
+
+
+            <label>Description</label>
+
+            <textarea
+                id="description"
+                placeholder="Décrivez votre boutique..."
+            ></textarea>
+
+
+            <label>Numéro de téléphone</label>
+
+            <input
+                id="telephone"
+                type="tel"
+                placeholder="Ex : 08XXXXXXXX"
+            >
+
+
+            <label>Devise</label>
+
+            <select id="devise">
+
+                <option value="FC">
+                    Franc congolais (FC)
+                </option>
+
+                <option value="USD">
+                    Dollar américain ($)
+                </option>
+
+            </select>
+
+
+            <button class="creer"
+                    onclick="creerBoutique()">
+                Créer la boutique
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- MA BOUTIQUE -->
+
+    <div id="ma-boutique" class="fenetre">
+
+        <div class="creation-box boutique-box">
+
+            <button class="fermer"
+                    onclick="fermerMaBoutique()">
+                ✕
+            </button>
+
+            <div class="boutique-logo">
+                🏪
+            </div>
+
+            <h2 id="afficher-nom">
+                Ma boutique
+            </h2>
+
+            <p id="afficher-description"
+               class="description-boutique">
+            </p>
+
+
+            <div class="info-boutique">
+
+                <div>
+                    <span>📞 Téléphone</span>
+
+                    <strong id="afficher-telephone">
+                        -
+                    </strong>
+                </div>
+
+                <div>
+                    <span>💰 Devise</span>
+
+                    <strong id="afficher-devise">
+                        -
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="info-boutique">
+                <div style="flex-direction:column;align-items:flex-start">
+                    <span>🔗 Lien de votre vitrine</span>
+                    <strong id="lien-vitrine" style="word-break:break-all;font-size:13px">-</strong>
+                </div>
+            </div>
+
+            <button class="bouton-secondaire" onclick="copierLien()">📋 Copier le lien</button>
+            <button class="bouton-secondaire" onclick="ouvrirVitrine()">👁️ Voir ma vitrine</button>
+
+            <button class="bouton-secondaire"
+                    onclick="modifierBoutique()">
+                ✏️ Modifier
+            </button>
+
+
+            <button class="bouton-danger"
+                    onclick="supprimerBoutique()">
+                🗑️ Supprimer la boutique
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- PRODUITS -->
+
+    <div id="produits" class="fenetre">
+
+        <div class="creation-box produits-box">
+
+            <button class="fermer"
+                    onclick="fermerProduits()">
+                ✕
+            </button>
+
+            <h2>📦 Mes produits</h2>
+
+            <p class="sous-titre">
+                Gérez les produits de votre boutique.
+            </p>
+
+
+            <button class="creer"
+                    onclick="ouvrirAjoutProduit()">
+                + Ajouter un produit
+            </button>
+
+
+            <div id="liste-produits">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- AJOUT PRODUIT -->
+
+    <div id="ajout-produit" class="fenetre">
+
+        <div class="creation-box">
+
+            <button class="fermer"
+                    onclick="fermerAjoutProduit()">
+                ✕
+            </button>
+
+            <h2>📦 Ajouter un produit</h2>
+
+            <p class="sous-titre">
+                Ajoutez les informations de votre produit.
+            </p>
+
+
+            <label>Nom du produit</label>
+
+            <input
+                id="nom-produit"
+                type="text"
+                placeholder="Ex : T-shirt noir"
+            >
+<!-- PHOTO DU PRODUIT -->
+
+<label>Photo du produit</label>
+
+<input
+    id="image-produit"
+    type="file"
+    accept="image/*"
+>
+
+<div class="apercu-image">
+    <img
+        id="apercu-produit"
+        src=""
+        alt="Aperçu du produit"
+        style="display:none;"
+    >
+</div>
+
+            <label>Prix</label>
+
+            <input
+                id="prix-produit"
+                type="number"
+                placeholder="Ex : 25000"
+            >
+
+
+            <label>Stock</label>
+
+            <input
+                id="stock-produit"
+                type="number"
+                placeholder="Ex : 10"
+            >
+
+
+            <label>Catégorie</label>
+
+            <select id="categorie-produit">
+
+                <option value="Mode">
+                    👕 Mode
+                </option>
+
+                <option value="Électronique">
+                    📱 Électronique
+                </option>
+
+                <option value="Maison">
+                    🏠 Maison
+                </option>
+
+                <option value="Alimentation">
+                    🍔 Alimentation
+                </option>
+
+                <option value="Autre">
+                    📦 Autre
+                </option>
+
+            </select>
+
+
+            <button class="creer"
+                    onclick="ajouterProduit()">
+                Ajouter le produit
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- MENU -->
+    <div id="menu" class="fenetre">
+        <div class="creation-box">
+            <button class="fermer" onclick="fermer('menu')">✕</button>
+            <h2>☰ Menu</h2>
+            <button class="bouton-secondaire" onclick="fermer('menu')">🏠 Accueil</button>
+            <button class="bouton-secondaire" onclick="allerA(ouvrirMaBoutique)">🏪 Ma boutique</button>
+            <button class="bouton-secondaire" onclick="allerA(ouvrirProduits)">📦 Produits</button>
+            <button class="bouton-secondaire" onclick="allerA(ouvrirCommandes)">🛒 Commandes</button>
+            <button class="bouton-secondaire" onclick="allerA(ouvrirStatistiques)">📊 Statistiques</button>
+            <button class="bouton-secondaire" onclick="location.href='index.html'">🛒 Voir la place de marché</button>
+            <button class="bouton-danger" onclick="deconnexion()">🚪 Se déconnecter</button>
+        </div>
+    </div>
+
+    <!-- COMMANDES -->
+    <div id="commandes" class="fenetre">
+        <div class="creation-box produits-box">
+            <button class="fermer" onclick="fermerCommandes()">✕</button>
+            <h2>🛒 Mes commandes</h2>
+            <p class="sous-titre">Suivez les commandes de vos clients.</p>
+            <button class="creer" onclick="ouvrirNouvelleCommande()">+ Nouvelle commande</button>
+            <div id="liste-commandes"></div>
+        </div>
+    </div>
+
+    <!-- NOUVELLE COMMANDE -->
+    <div id="nouvelle-commande" class="fenetre">
+        <div class="creation-box">
+            <button class="fermer" onclick="fermerNouvelleCommande()">✕</button>
+            <h2>🛒 Nouvelle commande</h2>
+            <label>Produit</label>
+            <select id="cmd-produit"></select>
+            <label>Quantité</label>
+            <input id="cmd-quantite" type="number" min="1" value="1">
+            <label>Nom du client</label>
+            <input id="cmd-client" type="text" placeholder="Ex : Marie">
+            <button class="creer" onclick="enregistrerCommande()">Enregistrer la commande</button>
+        </div>
+    </div>
+
+    <!-- STATISTIQUES -->
+    <div id="statistiques" class="fenetre">
+        <div class="creation-box">
+            <button class="fermer" onclick="fermerStatistiques()">✕</button>
+            <h2>📊 Statistiques</h2>
+            <p class="sous-titre">Les chiffres de votre boutique.</p>
+            <div id="liste-stats" class="info-boutique" style="margin-top:14px"></div>
+        </div>
+    </div>
+
+
+    <!-- CONNEXION -->
+    <div id="auth" class="auth">
+        <div class="creation-box auth-box">
+            <div class="boutique-logo">🛍️</div>
+            <h2 id="auth-titre">Connexion</h2>
+            <p class="sous-titre" id="auth-sous-titre">Connectez-vous pour gérer votre boutique.</p>
+
+            <div id="champ-nom" hidden>
+                <label>Votre nom</label>
+                <input id="auth-nom" type="text" placeholder="Ex : Marie Kabila" autocomplete="name">
+            </div>
+
+            <label>Adresse email</label>
+            <input id="auth-email" type="email" placeholder="Ex : marie@email.com" autocomplete="email">
+
+            <label>Mot de passe</label>
+            <input id="auth-mdp" type="password" placeholder="8 caractères, lettres et chiffres" autocomplete="current-password">
+            <button type="button" id="auth-voir" class="lien" onclick="voirMotDePasse()">Afficher le mot de passe</button>
+
+            <div id="champ-confirm" hidden>
+                <label>Confirmer le mot de passe</label>
+                <input id="auth-confirm" type="password" placeholder="Retapez le mot de passe" autocomplete="new-password">
+            </div>
+
+            <p id="auth-erreur" class="auth-erreur"></p>
+
+            <button id="auth-bouton" class="creer" onclick="validerAuth()">Se connecter</button>
+            <button id="auth-bascule" class="bouton-secondaire" onclick="basculerAuth()">Créer un compte</button>
+            <a class="lien" href="index.html" style="display:inline-block;margin-top:10px;text-decoration:none">🛒 Je suis acheteur</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>

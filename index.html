@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="connect-src https://aowfjpaclhrmmhpuxauq.supabase.co wss://aowfjpaclhrmmhpuxauq.supabase.co; img-src data: https://aowfjpaclhrmmhpuxauq.supabase.co; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+    <meta name="referrer" content="no-referrer">
+    <title>ShopBuilder — Boutiques</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">🛍️ ShopBuilder</div>
+        <button class="menu" onclick="ouvrirCompte()" aria-label="Mon compte">👤</button>
+    </header>
+
+    <main class="accueil">
+
+        <section class="hero">
+            <span class="badge">🛒 Place de marché</span>
+            <h1>Trouvez votre boutique <span>préférée.</span></h1>
+            <p>Parcourez les boutiques, découvrez leurs produits et commandez en quelques secondes.</p>
+            <input id="recherche" class="recherche" type="search" placeholder="🔍 Rechercher une boutique..." maxlength="60">
+        </section>
+
+        <section class="fonctionnalites">
+            <h2>Boutiques</h2>
+            <div id="liste-boutiques" class="grille-boutiques"></div>
+        </section>
+
+        <section class="hero hero-vendeur">
+            <h2>🏪 Vous vendez ?</h2>
+            <p>Créez votre boutique gratuitement et touchez de nouveaux clients.</p>
+            <a href="vendeur.html" class="bouton-principal">Ouvrir ma boutique</a>
+        </section>
+
+    </main>
+
+    <!-- CONNEXION ACHETEUR -->
+    <div id="auth" class="fenetre">
+        <div class="creation-box">
+            <button class="fermer" onclick="fermer('auth')">✕</button>
+            <h2 id="a-titre">Connexion acheteur</h2>
+            <p class="sous-titre" id="a-sous">Connectez-vous pour commander.</p>
+
+            <div id="a-champ-nom" hidden>
+                <label>Votre nom</label>
+                <input id="a-nom" type="text" maxlength="60" autocomplete="name" placeholder="Ex : Marie Kabila">
+            </div>
+
+            <label>Adresse email</label>
+            <input id="a-email" type="email" autocomplete="email" placeholder="Ex : marie@email.com">
+
+            <label>Mot de passe</label>
+            <input id="a-mdp" type="password" autocomplete="current-password" placeholder="8 caractères, lettres et chiffres">
+
+            <div id="a-champ-confirm" hidden>
+                <label>Confirmer le mot de passe</label>
+                <input id="a-confirm" type="password" autocomplete="new-password" placeholder="Retapez le mot de passe">
+            </div>
+
+            <p id="a-erreur" class="auth-erreur"></p>
+
+            <button id="a-bouton" class="creer" onclick="validerAuth()">Se connecter</button>
+            <button id="a-bascule" class="bouton-secondaire" onclick="basculerAuth()">Créer un compte acheteur</button>
+            <a class="lien" href="vendeur.html" style="display:inline-block;margin-top:10px;text-decoration:none">🏪 Je suis vendeur</a>
+        </div>
+    </div>
+
+    <!-- MON COMPTE -->
+    <div id="compte" class="fenetre">
+        <div class="creation-box">
+            <button class="fermer" onclick="fermer('compte')">✕</button>
+            <h2>👤 Mon compte</h2>
+
+            <div class="info-boutique" style="margin-top:14px">
+                <div><span>Nom</span><strong id="c-nom">-</strong></div>
+                <div><span>Email</span><strong id="c-email" style="font-size:13px;word-break:break-all">-</strong></div>
+            </div>
+
+            <div id="c-acheteur">
+                <button class="bouton-secondaire" onclick="ouvrirMesCommandes()">📦 Mes commandes</button>
+            </div>
+
+            <div id="c-vendeur" hidden>
+                <p class="sous-titre" style="margin-top:14px">Ce compte est un compte vendeur : il ne peut pas passer de commandes.</p>
+                <a class="bouton-principal" href="vendeur.html" style="text-align:center;text-decoration:none;margin-top:12px">🏪 Mon espace vendeur</a>
+            </div>
+
+            <button class="bouton-danger" onclick="deconnexion()">🚪 Se déconnecter</button>
+        </div>
+    </div>
+
+    <!-- MES COMMANDES -->
+    <div id="mes-commandes" class="fenetre">
+        <div class="creation-box produits-box">
+            <button class="fermer" onclick="fermer('mes-commandes')">✕</button>
+            <h2>📦 Mes commandes</h2>
+            <p class="sous-titre">Suivez l'état de vos commandes.</p>
+            <div id="liste-mes-commandes"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+    <script src="marche.js"></script>
+</body>
+</html>
