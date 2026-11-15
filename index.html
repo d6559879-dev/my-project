@@ -5,37 +5,192 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="connect-src https://aowfjpaclhrmmhpuxauq.supabase.co wss://aowfjpaclhrmmhpuxauq.supabase.co; img-src data: https://aowfjpaclhrmmhpuxauq.supabase.co; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
     <meta name="referrer" content="no-referrer">
-    <title>ShopBuilder — Boutiques</title>
+    <title>Dukani — Boutiques</title>
+    <script src="theme.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header class="header">
-        <div class="logo">🛍️ ShopBuilder</div>
-        <button class="menu" onclick="ouvrirCompte()" aria-label="Mon compte">👤</button>
+    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="ic-menu" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></symbol><symbol id="ic-add" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></symbol><symbol id="ic-search" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></symbol><symbol id="ic-close" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></symbol><symbol id="ic-settings" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></symbol><symbol id="ic-home-plein" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></symbol><symbol id="ic-home-ligne" viewBox="0 0 24 24"><path d="M12 5.69l5 4.5V18h-2v-6H9v6H7v-7.81l5-4.5M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></symbol><symbol id="ic-store-plein" viewBox="0 0 24 24"><path d="M20 4H4v2h16V4zm1 10v-2l-1-5H4l-1 5v2h1v6h10v-6h4v6h2v-6h1zm-9 4H6v-4h6v4z"/></symbol><symbol id="ic-store-ligne" viewBox="0 0 24 24"><path d="M18.36 9l.6 3H5.04l.6-3h12.72M20 4H4v2h16V4zm0 3H4l-1 5v2h1v6h10v-6h4v6h2v-6h1v-2l-1-5zM6 18v-4h6v4H6z"/></symbol><symbol id="ic-chat-plein" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></symbol><symbol id="ic-chat-ligne" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></symbol><symbol id="ic-cart-plein" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></symbol><symbol id="ic-cart-ligne" viewBox="0 0 24 24"><path d="M15.55 13c.75 0 1.41-.41 1.75-1.03l3.58-6.49A.996.996 0 0 0 20.01 4H5.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44C4.52 15.37 5.48 17 7 17h12v-2H7l1.1-2h7.45zM6.16 6h12.15l-2.76 5H8.53L6.16 6zM7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></symbol><symbol id="ic-person-plein" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></symbol><symbol id="ic-person-ligne" viewBox="0 0 24 24"><path d="M12 6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2m0 9c2.7 0 5.8 1.29 6 2v1H6v-.99c.2-.72 3.3-2.01 6-2.01m0-11C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 9c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"/></symbol><symbol id="ic-box" viewBox="0 0 24 24"><path d="M20 2H4c-1 0-2 .9-2 2v3.01c0 .72.43 1.34 1 1.69V20c0 1.1 1.1 2 2 2h14c.9 0 2-.9 2-2V8.7c.57-.35 1-.97 1-1.69V4c0-1.1-1-2-2-2zm-5 12H9v-2h6v2zm5-7H4V4h16v3z"/></symbol><symbol id="ic-stats" viewBox="0 0 24 24"><path d="M5 9.2h3V19H5zM10.6 5h2.8v14h-2.8zm5.6 8H19v6h-2.8z"/></symbol><symbol id="ic-megaphone" viewBox="0 0 24 24"><path d="M18 11v2h4v-2h-4zm-2 6.61c.96.71 2.21 1.65 3.2 2.39.4-.53.8-1.07 1.2-1.6-.99-.74-2.24-1.68-3.2-2.4-.4.54-.8 1.08-1.2 1.61zM20.4 5.6c-.4-.53-.8-1.07-1.2-1.6-.99.74-2.24 1.68-3.2 2.4.4.53.8 1.07 1.2 1.6.96-.72 2.21-1.65 3.2-2.4zM4 9c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h1v4h2v-4h1l5 3V6L8 9H4zm11.5 3c0-1.33-.58-2.53-1.5-3.35v6.69c.92-.81 1.5-2.01 1.5-3.34z"/></symbol><symbol id="ic-note" viewBox="0 0 24 24"><path d="M3 10h11v2H3v-2zm0-2h11V6H3v2zm0 8h7v-2H3v2zm15.01-3.13l.71-.71c.39-.39 1.02-.39 1.41 0l.71.71c.39.39.39 1.02 0 1.41l-.71.71-2.12-2.12zm-.71.71l-5.3 5.3V21h2.12l5.3-5.3-2.12-2.12z"/></symbol><symbol id="ic-arrow-back" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></symbol><symbol id="ic-send" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></symbol><symbol id="ic-thumb-plein" viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></symbol><symbol id="ic-thumb-ligne" viewBox="0 0 24 24"><path d="M9 21h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.58 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2zM9 9l4.34-4.34L12 10h9v2l-3 7H9V9zM1 9h4v12H1z"/></symbol><symbol id="ic-logout" viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></symbol><symbol id="ic-chevron" viewBox="0 0 24 24"><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></symbol><symbol id="ic-help" viewBox="0 0 24 24"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></symbol><symbol id="ic-info" viewBox="0 0 24 24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></symbol><symbol id="ic-lock" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></symbol><symbol id="ic-sun" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 0 0-1.41 0 .996.996 0 0 0 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 0 0-1.41 0 .996.996 0 0 0 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0a.996.996 0 0 0 0-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 0 0 0-1.41.996.996 0 0 0-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 0 0 0-1.41.996.996 0 0 0-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></symbol><symbol id="ic-moon" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></symbol><symbol id="ic-contrast" viewBox="0 0 24 24"><path d="M12 22c5.52 0 10-4.48 10-10S17.52 2 12 2 2 6.48 2 12s4.48 10 10 10zm0-18c4.41 0 8 3.59 8 8s-3.59 8-8 8V4z"/></symbol><symbol id="ic-bookmark-plein" viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/></symbol><symbol id="ic-bookmark-ligne" viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2zm0 15l-5-2.18L7 18V5h10v13z"/></symbol><symbol id="ic-check" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></symbol><symbol id="ic-group" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></symbol><symbol id="ic-trending" viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></symbol><symbol id="ic-news-plein" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></symbol><symbol id="ic-news-ligne" viewBox="0 0 24 24"><path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></symbol><symbol id="ic-star-plein" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></symbol><symbol id="ic-star-ligne" viewBox="0 0 24 24"><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/></symbol><symbol id="ic-verified" viewBox="0 0 24 24"><path d="M23 12l-2.44-2.79.34-3.69-3.61-.82-1.89-3.2L12 2.96 8.6 1.5 6.71 4.69 3.1 5.5l.34 3.7L1 12l2.44 2.79-.34 3.7 3.61.82L8.6 22.5l3.4-1.47 3.4 1.46 1.89-3.19 3.61-.82-.34-3.69L23 12zm-12.91 4.72l-3.8-3.81 1.48-1.48 2.32 2.33 5.85-5.87 1.48 1.48-7.33 7.35z"/></symbol><symbol id="ic-mode" viewBox="0 0 24 24"><path d="M21.6 18.2L13 11.75v-.91c1.65-.49 2.8-2.17 2.43-4.05-.26-1.31-1.3-2.4-2.61-2.7C10.54 3.57 8.5 5.3 8.5 7.5h2c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5c0 .84-.69 1.52-1.53 1.5-.54-.01-.97.45-.97.99v1.76L2.4 18.2c-.77.58-.36 1.8.6 1.8h18c.96 0 1.37-1.22.6-1.8zM6 18l6-4.5 6 4.5H6z"/></symbol><symbol id="ic-telephone" viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></symbol><symbol id="ic-restaurant" viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/></symbol><symbol id="ic-apps" viewBox="0 0 24 24"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></symbol></svg>
+
+    <header class="fb-entete">
+        <button class="fb-rond" type="button" onclick="ouvrirMenu()" aria-label="Menu"><svg class="ic" aria-hidden="true"><use href="#ic-menu"></use></svg></button>
+        <div class="fb-logo">dukani</div>
+        <div class="fb-actions">
+            <button id="btn-creer" class="fb-rond" type="button" onclick="location.href='vendeur.html?publier=1'" aria-label="Publier" hidden><svg class="ic" aria-hidden="true"><use href="#ic-add"></use></svg></button>
+            <button class="fb-rond" type="button" onclick="ouvrirRecherche()" aria-label="Rechercher"><svg class="ic" aria-hidden="true"><use href="#ic-search"></use></svg></button>
+            <button class="fb-rond" type="button" onclick="ouvrirMessages()" aria-label="Messages"><svg class="ic" aria-hidden="true"><use href="#ic-chat-plein"></use></svg></button>
+        </div>
     </header>
 
-    <main class="accueil">
+    <main class="accueil fb-accueil">
 
-        <section class="hero">
-            <span class="badge">🛒 Place de marché</span>
-            <h1>Trouvez votre boutique <span>préférée.</span></h1>
-            <p>Parcourez les boutiques, découvrez leurs produits et commandez en quelques secondes.</p>
-            <input id="recherche" class="recherche" type="search" placeholder="🔍 Rechercher une boutique..." maxlength="60">
-        </section>
+        <!-- ONGLET ACCUEIL (façon marketplace) -->
+        <div id="onglet-accueil">
 
-        <section class="fonctionnalites">
-            <h2>Boutiques</h2>
-            <div id="liste-boutiques" class="grille-boutiques"></div>
-        </section>
+            <div class="barre-recherche">
+                <svg class="ic" aria-hidden="true"><use href="#ic-search"></use></svg>
+                <input id="recherche" type="search" placeholder="Rechercher un produit ou une boutique" maxlength="60" aria-label="Rechercher un produit ou une boutique" autocomplete="off">
+                <button id="bouton-recherche" type="button">Rechercher</button>
+            </div>
 
-        <section class="hero hero-vendeur">
-            <h2>🏪 Vous vendez ?</h2>
-            <p>Créez votre boutique gratuitement et touchez de nouveaux clients.</p>
-            <a href="vendeur.html" class="bouton-principal">Ouvrir ma boutique</a>
-        </section>
+            <div id="categories" class="categories" role="group" aria-label="Catégories">
+                <button type="button" class="categorie actif" data-cat="" aria-pressed="true"><span class="categorie-icone"><svg class="ic" aria-hidden="true"><use href="#ic-apps"></use></svg></span>Tout</button>
+                <button type="button" class="categorie" data-cat="Mode" aria-pressed="false"><span class="categorie-icone"><svg class="ic" aria-hidden="true"><use href="#ic-mode"></use></svg></span>Mode</button>
+                <button type="button" class="categorie" data-cat="Électronique" aria-pressed="false"><span class="categorie-icone"><svg class="ic" aria-hidden="true"><use href="#ic-telephone"></use></svg></span>Électronique</button>
+                <button type="button" class="categorie" data-cat="Maison" aria-pressed="false"><span class="categorie-icone"><svg class="ic" aria-hidden="true"><use href="#ic-home-ligne"></use></svg></span>Maison</button>
+                <button type="button" class="categorie" data-cat="Alimentation" aria-pressed="false"><span class="categorie-icone"><svg class="ic" aria-hidden="true"><use href="#ic-restaurant"></use></svg></span>Alimentation</button>
+                <button type="button" class="categorie" data-cat="Autre" aria-pressed="false"><span class="categorie-icone"><svg class="ic" aria-hidden="true"><use href="#ic-box"></use></svg></span>Autre</button>
+            </div>
+
+            <section id="zone-bannieres" class="zone-bannieres" hidden>
+                <div id="rangee-bannieres" class="rangee-bannieres"></div>
+            </section>
+
+            <div id="vue-onglets" class="fil-onglets" role="group" aria-label="Affichage">
+                <button type="button" class="actif" data-vue="produits" aria-pressed="true">Produits</button>
+                <button type="button" data-vue="boutiques" aria-pressed="false">Boutiques</button>
+            </div>
+
+            <section id="vue-produits">
+                <div id="grille-produits" class="grille-produits"></div>
+                <button id="plus-produits" class="bouton-secondaire" type="button" hidden>Voir plus de produits</button>
+            </section>
+
+            <section id="vue-boutiques" hidden>
+                <div id="liste-boutiques" class="grille-boutiques"></div>
+            </section>
+
+            <section class="hero hero-vendeur">
+                <h2>Vous vendez ?</h2>
+                <p>Créez votre boutique gratuitement et touchez de nouveaux clients.</p>
+                <a href="vendeur.html" class="bouton-principal">Ouvrir ma boutique</a>
+            </section>
+
+        </div>
+
+        <!-- ONGLET ACTUALITÉS : stories + publications -->
+        <div id="onglet-actualites" hidden>
+
+            <section id="zone-statuts" class="zone-statuts" hidden>
+                <div id="rangee-statuts" class="rangee-statuts"></div>
+            </section>
+
+            <div class="fil-onglets" role="group" aria-label="Filtrer le fil">
+                <button type="button" class="actif" data-filtre="tous" aria-pressed="true" onclick="changerFiltreFil('tous')">Pour vous</button>
+                <button type="button" data-filtre="suivis" aria-pressed="false" onclick="changerFiltreFil('suivis')">Suivis</button>
+            </div>
+
+            <section id="fil">
+                <div id="liste-fil"></div>
+                <button id="plus-fil" class="bouton-secondaire" type="button" onclick="chargerFil(true)" hidden>Voir plus de publications</button>
+            </section>
+
+        </div>
 
     </main>
+
+    <!-- BARRE DU BAS -->
+    <nav class="fb-barre" aria-label="Navigation principale">
+        <button type="button" class="actif" data-onglet="accueil" onclick="afficherOnglet('accueil')"><span class="ic-boite"><svg class="ic ic-ligne" aria-hidden="true"><use href="#ic-home-ligne"></use></svg><svg class="ic ic-plein" aria-hidden="true"><use href="#ic-home-plein"></use></svg></span>Accueil</button>
+        <button type="button" data-onglet="actualites" onclick="afficherOnglet('actualites')"><span class="ic-boite"><svg class="ic ic-ligne" aria-hidden="true"><use href="#ic-news-ligne"></use></svg><svg class="ic ic-plein" aria-hidden="true"><use href="#ic-news-plein"></use></svg></span>Actualités</button>
+        <button type="button" class="avec-badge" onclick="ouvrirMessages()"><span class="ic-boite"><svg class="ic ic-ligne" aria-hidden="true"><use href="#ic-chat-ligne"></use></svg><svg class="ic ic-plein" aria-hidden="true"><use href="#ic-chat-plein"></use></svg></span>Messages<i id="badge-messages" class="badge-nb" hidden></i></button>
+        <button type="button" onclick="ouvrirCommandesOnglet()"><span class="ic-boite"><svg class="ic ic-ligne" aria-hidden="true"><use href="#ic-cart-ligne"></use></svg><svg class="ic ic-plein" aria-hidden="true"><use href="#ic-cart-plein"></use></svg></span>Commandes</button>
+        <button type="button" onclick="ouvrirCompte()"><span class="ic-boite"><svg class="ic ic-ligne" aria-hidden="true"><use href="#ic-person-ligne"></use></svg><svg class="ic ic-plein" aria-hidden="true"><use href="#ic-person-plein"></use></svg></span>Compte</button>
+    </nav>
+
+    <!-- MENU (☰) façon Facebook -->
+    <div id="menu" class="fenetre page-plein">
+        <div class="page-contenu">
+            <div class="page-entete">
+                <button class="page-bouton" type="button" onclick="fermer('menu')" aria-label="Retour"><svg class="ic" aria-hidden="true"><use href="#ic-arrow-back"></use></svg></button>
+                <h2>Menu</h2>
+            </div>
+            <div id="menu-corps" class="menu-corps"></div>
+        </div>
+    </div>
+
+    <!-- BOUTIQUES SUIVIES -->
+    <div id="suivis" class="fenetre page-plein">
+        <div class="page-contenu">
+            <div class="page-entete">
+                <button class="page-bouton" type="button" onclick="fermer('suivis')" aria-label="Retour"><svg class="ic" aria-hidden="true"><use href="#ic-arrow-back"></use></svg></button>
+                <h2>Boutiques suivies</h2>
+            </div>
+            <div id="liste-suivis" class="liste-conversations"></div>
+        </div>
+    </div>
+
+    <!-- ENREGISTREMENTS -->
+    <div id="enregistrements" class="fenetre page-plein">
+        <div class="page-contenu">
+            <div class="page-entete">
+                <button class="page-bouton" type="button" onclick="fermer('enregistrements')" aria-label="Retour"><svg class="ic" aria-hidden="true"><use href="#ic-arrow-back"></use></svg></button>
+                <h2>Enregistrements</h2>
+            </div>
+            <div id="corps-enregistrements" class="menu-corps"></div>
+        </div>
+    </div>
+
+    <!-- COMPTE : informations du profil -->
+    <div id="compte" class="fenetre">
+        <div class="creation-box">
+            <button class="fermer" onclick="fermer('compte')">✕</button>
+            <div class="profil-entete">
+                <div id="c-initiale" class="profil-avatar grand"></div>
+                <h2 id="c-nom">-</h2>
+                <p id="c-role" class="sous-titre"></p>
+            </div>
+            <div class="info-boutique">
+                <div><span>Email</span><strong id="c-email" style="word-break:break-all">-</strong></div>
+                <div><span>Membre depuis</span><strong id="c-depuis">-</strong></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MESSAGERIE : DISCUSSIONS (plein écran, façon Messenger) -->
+    <div id="messagerie" class="fenetre page-plein">
+        <div class="page-contenu">
+            <div class="page-entete">
+                <button class="page-bouton" type="button" onclick="fermer('messagerie')" aria-label="Retour"><svg class="ic" aria-hidden="true"><use href="#ic-arrow-back"></use></svg></button>
+                <h2>Discussions</h2>
+            </div>
+            <div class="page-recherche">
+                <input id="recherche-conversations" type="search" placeholder="Rechercher" aria-label="Rechercher une discussion">
+            </div>
+            <div id="liste-conversations" class="liste-conversations"></div>
+        </div>
+    </div>
+
+    <!-- MESSAGERIE : CONVERSATION -->
+    <div id="discussion" class="fenetre page-plein">
+        <div class="page-contenu">
+            <div class="page-entete">
+                <button class="page-bouton" type="button" onclick="fermerDiscussion()" aria-label="Retour"><svg class="ic" aria-hidden="true"><use href="#ic-arrow-back"></use></svg></button>
+                <div id="disc-avatar" class="conversation-avatar petit"></div>
+                <h2 id="disc-titre">Discussion</h2>
+                <button id="disc-boutique" class="page-bouton" type="button" aria-label="Voir la boutique" hidden><svg class="ic" aria-hidden="true"><use href="#ic-store-ligne"></use></svg></button>
+            </div>
+            <div id="fil-messages" class="fil-messages"></div>
+            <div class="barre-saisie">
+                <input id="champ-message" type="text" maxlength="1000" placeholder="Aa" aria-label="Votre message" autocomplete="off">
+                <button id="bouton-envoyer" type="button" onclick="envoyerMessage()" aria-label="Envoyer" hidden><svg class="ic" aria-hidden="true"><use href="#ic-send"></use></svg></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMMENTAIRES D'UNE PUBLICATION -->
+    <div id="commentaires-pub" class="fenetre">
+        <div class="creation-box produits-box">
+            <button class="fermer" onclick="fermer('commentaires-pub')">✕</button>
+            <h2>Commentaires</h2>
+            <div id="liste-commentaires-pub" class="liste-commentaires"></div>
+            <div class="saisie-commentaire">
+                <input id="champ-commentaire-pub" type="text" maxlength="300" placeholder="Écrire un commentaire…" aria-label="Votre commentaire">
+                <button type="button" onclick="envoyerCommentairePub()">Envoyer</button>
+            </div>
+        </div>
+    </div>
 
     <!-- CONNEXION ACHETEUR -->
     <div id="auth" class="fenetre">
@@ -68,41 +223,45 @@
         </div>
     </div>
 
-    <!-- MON COMPTE -->
-    <div id="compte" class="fenetre">
-        <div class="creation-box">
-            <button class="fermer" onclick="fermer('compte')">✕</button>
-            <h2>👤 Mon compte</h2>
-
-            <div class="info-boutique" style="margin-top:14px">
-                <div><span>Nom</span><strong id="c-nom">-</strong></div>
-                <div><span>Email</span><strong id="c-email" style="font-size:13px;word-break:break-all">-</strong></div>
-            </div>
-
-            <div id="c-acheteur">
-                <button class="bouton-secondaire" onclick="ouvrirMesCommandes()">📦 Mes commandes</button>
-            </div>
-
-            <div id="c-vendeur" hidden>
-                <p class="sous-titre" style="margin-top:14px">Ce compte est un compte vendeur : il ne peut pas passer de commandes.</p>
-                <a class="bouton-principal" href="vendeur.html" style="text-align:center;text-decoration:none;margin-top:12px">🏪 Mon espace vendeur</a>
-            </div>
-
-            <button class="bouton-danger" onclick="deconnexion()">🚪 Se déconnecter</button>
-        </div>
-    </div>
-
     <!-- MES COMMANDES -->
     <div id="mes-commandes" class="fenetre">
         <div class="creation-box produits-box">
             <button class="fermer" onclick="fermer('mes-commandes')">✕</button>
-            <h2>📦 Mes commandes</h2>
+            <h2>Mes commandes</h2>
             <p class="sous-titre">Suivez l'état de vos commandes.</p>
             <div id="liste-mes-commandes"></div>
         </div>
     </div>
 
+    <!-- PAIEMENT MOBILE MONEY -->
+    <div id="paiement" class="fenetre">
+        <div class="creation-box">
+            <button class="fermer" onclick="fermer('paiement')">✕</button>
+            <h2>Payer par mobile money</h2>
+            <p class="sous-titre" id="p-boutique"></p>
+
+            <div class="boite-paiement">
+                <span>Envoyez exactement</span>
+                <strong id="p-montant"></strong>
+                <span id="p-operateur"></span>
+                <strong class="numero-paiement" id="p-numero"></strong>
+                <button type="button" class="bouton-secondaire" onclick="copierNumeroPaiement()">📋 Copier le numéro</button>
+            </div>
+
+            <p class="sous-titre">
+                Une fois l'argent envoyé, saisissez ci-dessous la référence de la
+                transaction reçue par SMS. Le vendeur vérifiera votre paiement.
+            </p>
+
+            <label>Référence de la transaction</label>
+            <input id="p-reference" type="text" maxlength="40" placeholder="Ex : MP2610291234">
+
+            <button class="creer" onclick="declarerPaiement()">J'ai payé</button>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+    <script src="statuts.js"></script>
     <script src="marche.js"></script>
 </body>
 </html>

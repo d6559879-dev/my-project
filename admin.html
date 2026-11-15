@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta http-equiv="Content-Security-Policy" content="connect-src https://aowfjpaclhrmmhpuxauq.supabase.co wss://aowfjpaclhrmmhpuxauq.supabase.co; img-src data: blob: https://aowfjpaclhrmmhpuxauq.supabase.co; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+    <meta name="referrer" content="no-referrer">
+    <meta name="robots" content="noindex, nofollow">
+
+    <title>Dukani · Administration</title>
+
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="fb-entete">
+        <a class="fb-rond" href="index.html" aria-label="Retour à l'accueil">
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        </a>
+        <div class="fb-logo">administration</div>
+    </header>
+
+    <main class="accueil fb-accueil">
+
+        <p id="admin-message" class="fil-vide" hidden></p>
+
+        <div id="admin-contenu" hidden>
+
+            <section id="admin-resume" class="resume-admin"></section>
+
+            <div class="fil-onglets enveloppe" id="admin-onglets" role="group" aria-label="Sections">
+                <button type="button" class="actif" data-onglet="demandes">Demandes</button>
+                <button type="button" data-onglet="actives">En ligne</button>
+                <button type="button" data-onglet="historique">Historique</button>
+                <button type="button" data-onglet="tarifs">Tarifs</button>
+                <button type="button" data-onglet="boutiques">Boutiques</button>
+            </div>
+
+            <div id="admin-liste"></div>
+
+            <div id="admin-boutiques" hidden>
+                <p class="sous-titre">
+                    Une boutique « vérifiée » reçoit un badge bleu sur tout Dukani. Vérifiez
+                    son identité ou son activité avant de l'accorder.
+                </p>
+                <div id="liste-boutiques-admin"></div>
+            </div>
+
+            <div id="admin-tarifs" hidden>
+
+                <h3 class="menu-titre">Tarifs des publicités</h3>
+                <div id="liste-tarifs"></div>
+
+                <div class="formulaire-ligne">
+                    <input id="tarif-duree" type="number" min="1" max="365" placeholder="Jours">
+                    <input id="tarif-prix" type="number" min="0" step="0.01" placeholder="Prix">
+                    <select id="tarif-devise">
+                        <option value="USD">$</option>
+                        <option value="FC">FC</option>
+                    </select>
+                </div>
+                <button class="creer" type="button" onclick="ajouterTarif()">Ajouter ce tarif</button>
+
+                <h3 class="menu-titre">Où les boutiques doivent payer</h3>
+                <p class="sous-titre">
+                    Ce texte est affiché aux vendeurs quand ils demandent une publicité
+                    (par exemple : « Airtel Money 099 000 0000, au nom de … »).
+                </p>
+                <textarea id="instructions" maxlength="500" placeholder="Opérateur, numéro, nom du bénéficiaire…"></textarea>
+                <button class="creer" type="button" onclick="enregistrerInstructions()">Enregistrer</button>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+    <script src="admin.js"></script>
+
+</body>
+
+</html>
